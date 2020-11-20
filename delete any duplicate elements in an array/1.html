@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function fn(arr){
+			// check each element in the array
+			for(var i=0;i<arr.length;i++){
+				// for arr[i], compare with each element behind
+				for(var j=i+1;j<arr.length;j++){
+					// for arr[i], delete the duplicate element arr[j]
+					if(arr[i]===arr[j]){
+						arr.splice(j,1);
+						j--;
+					}
+				}
+			}
+			return arr;
+		}
+		console.log(fn([1,2,3,2,5,3,3,3,9]));
+	</script>
+</body>
+</html>

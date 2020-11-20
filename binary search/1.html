@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// to find an element in a sorted array. Example: whether target==4 is in the given array or not.
+		var arr=[1,2,4,5,7,8,9];
+		var target=4;		
+		function fn(arr){
+			var left=0;  //corner case
+			var right=arr.length-1;
+			while(left<=right){
+				var mid=Math.floor(left+(right-left)/2);
+				if(arr[mid]==target){
+					return mid;  //return any target element's index
+				}else if(arr[mid]<target){
+					left=mid+1;
+				}else if(arr[mid]>target){
+					right=mid-1;
+				}
+			}
+			return -1;  //return -1 if there is no target element in this array
+		}	
+		console.log(fn(arr));	
+	</script>	
+</body>
+</html>
+
+ 
