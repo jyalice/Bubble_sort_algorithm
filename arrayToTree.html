@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let input=[
+			{
+				id:1,
+				val:'school',
+				parentId:null
+			},
+			{
+				id:2,
+				val:'class1',
+				parentId:1
+			},
+			{
+				id:3,
+				val:'class2',
+				parentId:1
+			},
+			{
+				id:4,
+				val:'student1',
+				parentId:2
+			},
+			{
+				id:5,
+				val:'student2',
+				parentId:2
+			},
+			{
+				id:6,
+				val:'student3',
+				parentId:3
+			},
+		]
+		// intented output:
+		// let output={
+		// 	id:1,
+		// 	val:'school',
+		// 	children:[
+		// 		{
+		// 			id:2,
+		// 			val:'class1',
+		// 			children:[
+		// 				{
+		// 					id:4,
+		// 					val:'student1',
+		// 					children:[]
+		// 				},
+		// 				{
+		// 					id:5,
+		// 					val:'student2',
+		// 					children:[]
+		// 				}
+		// 			]
+		// 		},
+		// 		{
+		// 			id:3,
+		// 			val:'class2',
+		// 			children:[
+		// 				{
+		// 					id:6,
+		// 					val:'student3',
+		// 					children:[]
+		// 				}
+		// 			]
+		// 		}
+		// 	]
+		// }
+		function arrayToTree(array){
+			let root=array[0];
+			array.shift();
+			let tree={
+				id:root.id,
+				val:root.val,
+				children:array.length?toTree(root.id,array):[]
+			};
+			return tree;
+		}
+		function toTree(parentId,array){
+			let children=[];
+			for(var i=0; i<array.length; i++){
+				if(array[i].parentId===parentId){
+					children.push({
+						id:array[i].id,
+						val:array[i].val,
+						children:toTree(array[i].id,array)
+					});
+				}
+			}
+			return children;
+		}
+		console.log(arrayToTree(input));
+	</script>
+</body>
+</html>
